@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.11.3.min.js"></script>
+		<style type="text/css">
+			span{
+				margin-left: 30px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		
+		<script type="text/javascript">
+			
+			$(function(){
+				$.ajax({
+					url:'http://localhost:3000/xianshi',
+					type:'POST',
+					success:function(e){
+						var str=''
+						for (i in e) {
+	str+=('<p><span>'+e[i].name+'</span><span>'+e[i].datai+'</span><span>'+e[i].price+'</span></p>')
+						}
+						$('body').html(str)
+					}
+					
+				})
+		
+				
+				
+	})
+		</script>
+		
+	</body>
+</html>

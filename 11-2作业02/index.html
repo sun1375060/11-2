@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<script src="jquery-1.11.3.min.js"></script>
+	<style type="text/css">
+			span{
+				display: inline-block;
+				/*border: 1px solid red;*/
+				margin-left: 50px;
+			}
+			i{
+				color: red;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		
+	
+		<input type="text" name="" id="inpA" value="" /><i>x</i>
+		<input type="text" name="" id="inpB" value="" /><i>x</i>
+		<input type="text" name="" id="inpC" value="" /><i>x</i>
+		<button id="btn">添加</button>
+	<div class="box"></div>
+		
+		<script type="text/javascript">
+			$(function(){
+				$('#btn').click(function(){
+				var inpAval=$('#inpA').val();
+				var inpBval=$('#inpB').val();
+				var inpCval=$('#inpC').val();
+				if(inpAval==''&&inpBval==''&&inpCval==''){
+					$('i').css('display','inline-block')
+				}else{
+					$('i').css('display','none')
+					$.ajax({
+					url:'http://localhost:3000/tianjia',
+					type:'POST',
+					data:{'idA':inpAval,'idB':inpBval,'idC':inpCval},
+					success:function(e){
+						console.log(e)
+						var str=''
+						for (i in e) {
+	str+=('<p><span>'+e[i].name+'</span><span>'+e[i].datai+'</span><span>'+e[i].price+'</span></p>')
+						}
+						$('.box').html(str)
+					}
+					
+				})
+				}
+			})//btn点击事件
+				
+				
+				
+				
+	})
+			
+		</script>
+		
+	</body>
+</html>
